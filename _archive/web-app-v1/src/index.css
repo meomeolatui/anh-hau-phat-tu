@@ -1,0 +1,137 @@
+@import 'tailwindcss';
+@import '@fontsource/be-vietnam-pro/400.css';
+@import '@fontsource/be-vietnam-pro/500.css';
+@import '@fontsource/be-vietnam-pro/600.css';
+@import '@fontsource/be-vietnam-pro/700.css';
+@import '@fontsource-variable/noto-serif';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+  Design tokens — Anh Hậu Phật Tử
+  jade    : màu chủ đạo (ngọc bích, tĩnh lặng)
+  lotus   : điểm nhấn (hoa sen)
+  saffron : vàng nghệ (áo cà sa, ánh đèn) — dùng cho thành tích, ngày vía
+  paper   : nền giấy ấm cho chế độ sáng; ink cho chữ
+*/
+@theme {
+  --font-sans: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Noto Serif Variable', 'Noto Serif', Georgia, serif;
+
+  --color-jade-50: #effaf6;
+  --color-jade-100: #d7f2e8;
+  --color-jade-200: #b1e4d3;
+  --color-jade-300: #7fcfb8;
+  --color-jade-400: #4bb399;
+  --color-jade-500: #2a967f;
+  --color-jade-600: #1d7867;
+  --color-jade-700: #1a6055;
+  --color-jade-800: #184d45;
+  --color-jade-900: #163f3a;
+  --color-jade-950: #0a2421;
+
+  --color-lotus-50: #fdf2f6;
+  --color-lotus-100: #fce7ef;
+  --color-lotus-200: #fbcfe0;
+  --color-lotus-300: #f8a8c5;
+  --color-lotus-400: #f2739f;
+  --color-lotus-500: #e8497d;
+  --color-lotus-600: #d52b5c;
+  --color-lotus-700: #b81d48;
+  --color-lotus-800: #98193d;
+  --color-lotus-900: #7f1a37;
+
+  --color-saffron-50: #fffaeb;
+  --color-saffron-100: #fef0c7;
+  --color-saffron-200: #fde08a;
+  --color-saffron-300: #fbc94d;
+  --color-saffron-400: #f9b324;
+  --color-saffron-500: #f0920c;
+  --color-saffron-600: #d46c07;
+  --color-saffron-700: #b04b0a;
+  --color-saffron-800: #8f3a0f;
+  --color-saffron-900: #763010;
+
+  --color-paper: #faf7f2;
+  --color-paper-2: #f3eee5;
+  --color-ink: #1c1917;
+  --color-night: #0c1614;
+  --color-night-2: #12201d;
+  --color-night-3: #1a2d29;
+
+  --radius-4xl: 2rem;
+
+  --shadow-soft: 0 1px 2px rgb(28 25 23 / 0.04), 0 8px 24px -8px rgb(28 25 23 / 0.10);
+  --shadow-glow: 0 0 0 1px rgb(42 150 127 / 0.15), 0 12px 40px -12px rgb(26 96 85 / 0.45);
+
+  --animate-breathe: breathe 8s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-up: fade-up 0.5s ease-out both;
+  --animate-ripple: ripple 0.7s ease-out forwards;
+
+  @keyframes breathe {
+    0%, 100% { transform: scale(0.85); opacity: 0.7; }
+    50% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+  @keyframes fade-up {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes ripple {
+    from { transform: scale(0.6); opacity: 0.6; }
+    to { transform: scale(2.2); opacity: 0; }
+  }
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-paper font-sans text-ink antialiased dark:bg-night dark:text-stone-100;
+    text-rendering: optimizeLegibility;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-jade-500;
+  }
+  ::selection {
+    @apply bg-jade-200 text-jade-950;
+  }
+}
+
+@layer components {
+  /* Họa tiết nền nhẹ cho các khối hero */
+  .bg-lotus-pattern {
+    background-image:
+      radial-gradient(circle at 20% 20%, rgb(232 73 125 / 0.10), transparent 40%),
+      radial-gradient(circle at 80% 0%, rgb(42 150 127 / 0.18), transparent 45%),
+      radial-gradient(circle at 60% 100%, rgb(240 146 12 / 0.10), transparent 40%);
+  }
+}
+
+@utility scrollbar-none {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

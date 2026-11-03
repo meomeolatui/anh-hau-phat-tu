@@ -1,0 +1,17 @@
+# Triển khai Anh Hậu Phật Tử lên Render (gói miễn phí) — xem docs/trien-khai-render.md
+# Một dịch vụ web phục vụ cả game (dist/) lẫn máy chủ online (/api, /ws).
+# Dữ liệu tài khoản/tiến trình nằm ở Postgres ngoài (Neon miễn phí) vì ổ đĩa Render free bị xoá mỗi lần khởi động lại.
+services:
+  - type: web
+    name: anh-hau-phat-tu # → https://anh-hau-phat-tu.onrender.com (Render thêm hậu tố nếu tên đã có người dùng)
+    runtime: node
+    plan: free
+    region: singapore # gần Việt Nam nhất
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "24"
+      - key: DATABASE_URL
+        sync: false # nhập tay trên Render: chuỗi kết nối Neon
