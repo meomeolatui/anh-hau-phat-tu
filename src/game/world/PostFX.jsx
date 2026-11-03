@@ -35,13 +35,16 @@ export default function PostFX({ enabled, high = false }) {
     <EffectComposer multisampling={0}>
       <N8AO
         ref={tuneAO}
-        halfRes={!high}
+        // Không dùng halfRes: render target nửa độ phân giải của n8ao 2.0.1 lỗi với three r187
+        // (setupRenderTarget đọc textures.length của undefined mỗi khung hình → không vẽ được cảnh).
+        // Bù hiệu năng bằng ít mẫu hơn ở mức không phải "Đẹp".
+        halfRes={false}
         depthAwareUpsampling
         screenSpaceRadius={false}
         aoRadius={1.6}
         distanceFalloff={0.5}
         intensity={2.4}
-        aoSamples={high ? 16 : 8}
+        aoSamples={high ? 16 : 6}
         denoiseSamples={high ? 8 : 4}
         denoiseRadius={12}
         color={AO_COLOR}
