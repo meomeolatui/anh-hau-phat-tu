@@ -18,9 +18,9 @@ export const midiToHz = (m) => 440 * 2 ** ((m - 69) / 12)
 /** Giữ tên cũ cho mã khác dùng */
 export const nguCungMidi = (degree, root = ROOT_MIDI) => degreeToMidi(degree, root)
 
-/** Có được phát nhạc nền (file/tự soạn) không — chế độ YouTube do trình phát nhúng đảm nhận */
+/** Có được phát nhạc nền (file mp3 của bạn hoặc bản tự soạn) không */
 export function musicEnabled(settings) {
-  return Boolean(settings) && settings.sound !== false && settings.bgm !== false && settings.bgmSource !== 'youtube'
+  return Boolean(settings) && settings.sound !== false && settings.bgm !== false
 }
 
 /* ------------------------------------------------------------------ */

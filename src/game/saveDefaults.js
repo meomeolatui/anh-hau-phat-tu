@@ -45,7 +45,6 @@ export const DEFAULT_SAVE = {
     music: true,
     bgm: true, // nhạc nền (file public/nhac/khuc-nhac-thien-dinh.mp3 hoặc bản tự soạn)
     bgmVolume: 0.5,
-    bgmSource: 'youtube', // 'youtube' (trình phát nhúng, cần mạng) | 'synth' (file mp3 của bạn hoặc bản tự soạn)
     quality: 'auto', // 'low' | 'high' | 'auto'
     timeMode: 'real', // 'real' | 'day' | 'dusk' | 'night'
     sensitivity: 1,

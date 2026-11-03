@@ -50,18 +50,9 @@ export default function MenuPanel() {
       <div className="divide-y divide-stone-200 rounded-2xl bg-white px-4">
         <Choice label="Âm thanh" value={settings.sound} options={[{ value: true, label: 'Bật' }, { value: false, label: 'Tắt' }]} onChange={(v) => updateSettings({ sound: v })} />
         <Choice label="Nhạc nền" value={settings.bgm} options={[{ value: true, label: 'Bật' }, { value: false, label: 'Tắt' }]} onChange={(v) => updateSettings({ bgm: v })} />
-        <Choice
-          label="Nguồn nhạc nền"
-          value={settings.bgmSource ?? 'youtube'}
-          options={[
-            { value: 'youtube', label: 'YouTube' },
-            { value: 'synth', label: 'Tự soạn / file mp3' },
-          ]}
-          onChange={(v) => updateSettings({ bgmSource: v })}
-        />
         <div className="flex items-center justify-between gap-3 py-2.5">
           <label htmlFor="bgmvol" className="text-sm font-medium text-stone-700">
-            Âm lượng nhạc nền (tự soạn / mp3)
+            Âm lượng nhạc nền
           </label>
           <input id="bgmvol" type="range" min={0} max={1} step={0.05} value={settings.bgmVolume ?? 0.5} onChange={(e) => updateSettings({ bgmVolume: Number(e.target.value) })} className="w-40 accent-jade-600" />
         </div>

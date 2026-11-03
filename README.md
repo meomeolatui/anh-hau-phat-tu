@@ -98,10 +98,7 @@ Mặc định game phát **"Vân Sơn Thiên Khúc"**, bản nhạc nền tự s
 
 Bản nhạc chia 4 đoạn lặp vòng và mỗi vòng đổi giai điệu. Nhạc tự nhỏ lại khi thiền, tụng kinh hoặc niệm Phật.
 
-Có thể thay bằng nguồn khác trong Menu → Nguồn nhạc nền:
-
-- **File mp3 của bạn:** đặt file tại `public/nhac/khuc-nhac-thien-dinh.mp3` (chỉ dùng file bạn có quyền sử dụng). Game sẽ ưu tiên phát file này, không hiện khung phát và tự lặp.
-- **YouTube:** game nhúng trình phát chính thức. Theo điều khoản YouTube, khung phát phải luôn hiển thị, và chế độ này cần có mạng.
+Muốn dùng bản nhạc riêng: đặt file tại `public/nhac/khuc-nhac-thien-dinh.mp3` (chỉ dùng file bạn có quyền sử dụng). Game sẽ ưu tiên phát file này và tự lặp.
 
 ## Công nghệ và cấu trúc
 

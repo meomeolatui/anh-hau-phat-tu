@@ -3,7 +3,6 @@ import { Coins, Eye, Flame, Hand, ListChecks, Map as MapIcon, Menu, ScanEye, Spa
 import Feedback from './Feedback'
 import StaminaBar from './StaminaBar'
 import RideStatus from './RideStatus'
-import YouTubeMusic from './YouTubeMusic'
 import { levelFor, QUESTS } from '../progression'
 import { endActivity, openPanel, setHolding, useGame } from '../state'
 import { interactNearest } from '../interaction'
@@ -259,7 +258,6 @@ export default function Hud() {
       <OnlineStatus />
       <Feedback />
       <RideStatus />
-      <YouTubeMusic />
       <div className="pointer-events-auto">
         <Prompt />
         <ActivityLayer />

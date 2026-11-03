@@ -15,8 +15,8 @@ describe('nhạc nền', () => {
     expect(musicEnabled({ sound: true, bgm: true })).toBe(true)
     expect(musicEnabled({ sound: false, bgm: true })).toBe(false)
     expect(musicEnabled({ sound: true, bgm: false })).toBe(false)
-    // Chế độ YouTube: trình phát nhúng phát nhạc, bộ tự soạn im lặng
-    expect(musicEnabled({ sound: true, bgm: true, bgmSource: 'youtube' })).toBe(false)
+    // Bản lưu cũ từng chọn nguồn YouTube (đã bỏ) vẫn phát nhạc tự soạn
+    expect(musicEnabled({ sound: true, bgm: true, bgmSource: 'youtube' })).toBe(true)
   })
 
   it('không lỗi khi môi trường không có âm thanh (jsdom)', () => {
