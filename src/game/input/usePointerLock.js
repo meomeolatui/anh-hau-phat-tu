@@ -9,6 +9,7 @@ import { getGame, openPanel, useGame } from '../state'
  *  - Mở hoạt động / bảng (menu, bản đồ…) → nhả chuột để bấm giao diện; đóng lại → khoá lại.
  *  - Esc khi đang khoá: trình duyệt nhả chuột và nuốt phím → ta mở Menu (tạm dừng) như các game khác.
  *  - Alt+Tab / chuyển cửa sổ: nhả chuột để con trỏ hiện ra, KHÔNG mở Menu; quay lại bấm vào khung hình để khoá.
+ *  - Giữ Alt → con trỏ lướt tự do (không mở Menu); thả Alt → khoá lại.
  *  - Chuột trái khi đang khoá → hiện con trỏ (để bấm nút HUD); bấm vào khung hình lần nữa → khoá lại.
  *  - Trình duyệt từ chối (hết hiệu lực thao tác, vừa nhả chưa lâu…) → bấm vào khung hình để khoá lại.
  *  - Thiết bị cảm ứng hoặc tắt trong cài đặt (settings.mouseLock) → không dùng.
@@ -91,6 +92,38 @@ export function usePointerLock(targetRef) {
     // request chỉ đọc ref — không cần là phụ thuộc
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [want, supported])
+
+  // Giữ Alt: con trỏ lướt tự do (bấm nút HUD, chọn đồ…) mà không mở Menu; thả Alt → khoá lại, xoay camera tiếp.
+  // Chặn mặc định của Alt để trình duyệt không nhảy lên thanh menu của nó.
+  useEffect(() => {
+    const el = targetRef.current
+    if (!supported || !el || !want) return
+    let freedByAlt = false
+    const onKeyDown = (e) => {
+      if (e.key !== 'Alt') return
+      e.preventDefault()
+      if (e.repeat || document.pointerLockElement !== el) return
+      freedByAlt = true
+      releasing.current = true
+      document.exitPointerLock()
+    }
+    const onKeyUp = (e) => {
+      if (e.key !== 'Alt') return
+      e.preventDefault()
+      if (!freedByAlt) return
+      freedByAlt = false
+      // Thả Alt sau Alt+Tab (đang ở cửa sổ khác) thì thôi; trình duyệt từ chối thì đã có gợi ý bấm để khoá
+      if (document.hasFocus()) request()
+    }
+    window.addEventListener('keydown', onKeyDown)
+    window.addEventListener('keyup', onKeyUp)
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener('keyup', onKeyUp)
+    }
+    // request chỉ đọc ref — không cần là phụ thuộc
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [want, supported, targetRef])
 
   // Chuột trái bật/tắt: đang khoá → bấm là hiện con trỏ (không mở Menu); đang hiện → bấm vào khung hình là khoá lại.
   // Xét trạng thái ngay lúc nhấn nên cú bấm vừa khoá không tự nhả lại.

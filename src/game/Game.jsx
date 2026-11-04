@@ -124,7 +124,7 @@ export default function Game() {
       {/* Chuột chưa khoá vào khung hình (trình duyệt từ chối / vừa bấm Esc) → nhắc bấm để điều khiển */}
       {pointer.supported && !pointer.locked && !activity && !panel && (
         <div className="pointer-events-none absolute top-20 left-1/2 z-30 flex -translate-x-1/2 animate-fade-in items-center gap-2 rounded-2xl bg-stone-900/60 px-4 py-2 text-sm font-medium text-white shadow-lg backdrop-blur-md">
-          <MousePointer2 className="h-4 w-4" aria-hidden /> Bấm vào khung hình để điều khiển camera bằng chuột · bấm lần nữa để hiện con trỏ
+          <MousePointer2 className="h-4 w-4" aria-hidden /> Bấm vào khung hình để điều khiển camera bằng chuột · giữ Alt để con trỏ lướt tự do
         </div>
       )}
       <Hud />

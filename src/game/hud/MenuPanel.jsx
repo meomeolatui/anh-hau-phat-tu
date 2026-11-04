@@ -33,7 +33,7 @@ const CONTROLS = [
   ['Chạy', 'Giữ Shift · Đẩy hết cần điều khiển'],
   ['Nhảy', 'Phím Space · Nút mũi tên lên góc dưới phải (cảm ứng)'],
   ['Xoay camera', 'Di chuột (chuột khoá vào khung hình) · Kéo chuột · Vuốt nửa phải màn hình'],
-  ['Hiện / ẩn con trỏ chuột', 'Bấm chuột trái (hiện) · bấm vào khung hình lần nữa (ẩn, khoá lại) · Esc mở Menu'],
+  ['Hiện / ẩn con trỏ chuột', 'Giữ Alt: con trỏ lướt tự do, thả ra là khoá lại · Bấm chuột trái (hiện) / bấm vào khung hình (khoá lại) · Esc mở Menu'],
   ['Phóng to/nhỏ', 'Lăn chuột · Chụm hai ngón'],
   ['Góc nhìn thứ nhất / thứ ba', 'Phím C · Nút hình con mắt góc trên'],
   ['Tương tác', 'E hoặc Enter · Chạm nút gợi ý'],

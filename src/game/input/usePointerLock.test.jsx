@@ -97,6 +97,21 @@ describe('khoá chuột vào khung hình', () => {
     focus.mockRestore()
   })
 
+  it('giữ Alt → con trỏ lướt tự do (không mở Menu); thả Alt → khoá lại', () => {
+    vi.spyOn(document, 'hasFocus').mockReturnValue(true)
+    const { getByTestId } = render(<Harness />)
+    const el = getByTestId('khung')
+    expect(lockedEl).toBe(el)
+    const down = new KeyboardEvent('keydown', { key: 'Alt', cancelable: true })
+    act(() => window.dispatchEvent(down))
+    expect(lockedEl).toBeNull()
+    expect(down.defaultPrevented).toBe(true)
+    expect(getGame().ui.panel).toBeNull()
+    act(() => window.dispatchEvent(new KeyboardEvent('keyup', { key: 'Alt', cancelable: true })))
+    expect(lockedEl).toBe(el)
+    vi.restoreAllMocks()
+  })
+
   it('tắt trong cài đặt thì không khoá', () => {
     act(() => updateSettings({ mouseLock: false }))
     render(<Harness />)
